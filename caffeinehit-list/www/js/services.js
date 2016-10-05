@@ -24,7 +24,7 @@ app.service("YelpService", function($q, $http, $cordovaGeolocation, $ionicPopup)
             var deferred = $q.defer();
             ionic.Platform.ready(function() {
                 $cordovaGeolocation
-                    .getCurrentPosition({ timeout: 1000, enableHighAccuracy: false })
+                    .getCurrentPosition({ timeout: 10000, enableHighAccuracy: false })
                     .then(function(position) {
                         self.lat = position.coords.latitude;
                         self.lon = position.coords.longitude;
