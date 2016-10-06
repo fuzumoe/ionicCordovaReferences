@@ -1,27 +1,39 @@
 var app = angular.module('tedrssapp.controllers', []);
 
-app.controller('FeedCtrl', function ($scope, FeedService) {
-	console.log("Loading FeedCtrl");
+app.controller('FeedCtrl', function($scope, FeedService, $ionicLoading) {
+    console.log("Loading FeedCtrl");
+    $ionicLoading.show({ template: 'Loading feed' });
+    $scope.feed = FeedService;
+    $scope.feed.loadFeed().then(function() {
 
-	$scope.feed = FeedService;
-	$scope.feed.loadFeed();
+        $ionicLoading.hide();
+    });
 
-	$scope.doRefresh = function () {
-		$scope.feed.loadFeed().then(function () {
-			$scope.$broadcast('scroll.refreshComplete');
-		});
-	};
+    $scope.doRefresh = function() {
+        $scope.feed.loadFeed().then(function() {
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
 });
 
-app.controller('PostCtrl', function ($scope) {
-	console.log("Loading PostCtrl");
+app.controller('PostCtrl', function($scope, $stateParams, $window, FeedService, $cordovaSocialSharing) {
 
-	$scope.share = function () {
-		console.debug("Sharing post");
-	};
+    console.log("Loading PostCtrl");
+    $scope.postId = $stateParams.id;
+    console.log($scope.postId)
+    $scope.post = FeedService.getEntry($scope.postId);
 
-	$scope.readMore = function () {
-		console.debug("Read more post");
-	};
+    $scope.share = function() {
+        console.debug("Sharing post");
+        $cordovaSocialSharing.share($scope.post.title, $scope.post.title, $scope.post.thumbnail, $scope.post.link)
+            .then(function() {
+
+            });
+    };
+
+    $scope.readMore = function() {
+        console.debug("Read more post");
+        $window.open($scope.post.link, "_system", "location=yes");
+    };
 
 });
