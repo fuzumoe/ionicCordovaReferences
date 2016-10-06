@@ -68,7 +68,11 @@ app.service("YelpService", function($q, $http, $cordovaGeolocation, $ionicPopup)
         }
     };
 
-    self.load();
+    self.load().then(function() {
+        self.next().then(function() {
+            self.next();
+        });
+    });
 
     return self;
 });

@@ -1,8 +1,14 @@
 var app = angular.module('caffeinehit.controllers', []);
 
-app.controller("YelpController", function($scope, YelpService) {
-    $scope.yelp = YelpService;
+app.controller("YelpController", function($scope, YelpService, NgMap) {
+    $scope.map;
+    $scope.$on('mapInitialized', function(event, map) {
 
+        $scope.map = map;
+    });
+
+    $scope.yelp = YelpService;
+    $scope.yelp.cafe = $scope.yelp.results[0];
     $scope.doRefresh = function() {
         if (!$scope.yelp.isLoading) {
             $scope.yelp.refresh()
@@ -48,6 +54,11 @@ app.controller("YelpController", function($scope, YelpService) {
 
     };
 
+
+    $scope.showCafeDetail = function(event, cafe) {
+        $scope.cafe = cafe;
+        $scope.map.scope.showInfoWindow.apply(this, [event, 'bar-info-window']);
+    };
 
 
 });

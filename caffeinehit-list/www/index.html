@@ -6,20 +6,19 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
 
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-	<link href="css/ionic.app.css" rel="stylesheet">
-	-->
-    <script src="http://maps.google.com/maps/api/js"></script>
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <!--<script src="http://maps.google.com/maps/api/js"></script>-->
+
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCVm4jVmZ6AS8l3D4JCvtw_M-Hc60ZJJw8"></script>
+
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-    <script src="cordova.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js" ></script >
+    <script src="cordova.js" ></script >
 
     <!-- your apps js -->
     <script src="js/app.js"></script>
@@ -32,13 +31,13 @@
 <body ng-app="caffeinehit">
 
     <ion-pane ng-controller="YelpController">
-        <ion-header-bar class="bar-stable">
+        <ion-header-bar class="bar-assertive">
             <h1 class="title">
-                <img src="img/coffee-bean-icon.png">
+                <img src="img/coffee-bean-icon.png" style="max-height: 20px; max-width: 20px;">
                 <span>CaffeineHit</span>
             </h1>
         </ion-header-bar>
-        <ion-content>
+        <ion-content class="has-header">
             <ion-refresher on-refresh="doRefresh()" pulling-item="Refresh"></ion-refresher>
             <ion-list>
                 <ion-item ng-repeat="cafe in yelp.results" class="item-thumbnail-left" ng-click="openMap(cafe)">
