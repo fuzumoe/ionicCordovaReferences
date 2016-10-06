@@ -1,6 +1,42 @@
-.bar-header .title img {
-	height: 24px;
-	vertical-align: middle;
-	margin-right: 5px;
-	margin-top: -5px;
-}
+        .bar-header .title img {
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 5px;
+            margin-top: -5px;
+        }
+        
+        .create-form .calories {
+            float: right;
+            margin-right: 10px;
+        }
+        
+        .create-form .picture img {
+            width: 100%;
+        }
+        
+        .item-card .calories {
+            float: right;
+            font-weight: bold;
+        }
+        
+        .item-card .calories .category {
+            color: lightgray;
+        }
+        
+        .has-error {
+            border-bottom: 2px solid #ef473a;
+        }
+        
+        .form-errors {
+            display: block;
+        }
+        
+        .form-error {
+            padding: 10px 10px;
+            text-align: center;
+            color: #ef473a;
+        }
+        
+        .form-errors {
+            display: none;
+        }
